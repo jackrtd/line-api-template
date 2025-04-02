@@ -76,7 +76,7 @@ Send a message to a LINE user.
 ```json
 {
   "to": "Uxxxxxxxxxxxxxxxxxxxxxx",
-  "message": "Your message here"
+  "messages": [{"type": "text", "message": "Your message here"}]
 }
 ```
 
@@ -86,7 +86,12 @@ curl -X POST http://localhost:3000/send-message \
   -H "Content-Type: application/json" \
   -d '{
     "to": "Uxxxxxxxxxxxxxxxxxxxxxx",
-    "message": "Hello from LINE Messaging API!"
+    "messages": [
+        {
+            "type": "text",
+            "text": "Test from Schedule"
+        }
+    ]
   }'
 ```
 
