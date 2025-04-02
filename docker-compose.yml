@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  line-messaging-api:
+    build: .
+    container_name: line-messaging-api
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      custom_net:
+        ipv4_address: 100.64.0.10
+    restart: unless-stopped
+
+  db:
+    image: mysql:8
+    container_name: line-api-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      custom_net:
+        ipv4_address: 100.64.0.11
+volumes:
+  db_data:
+
+networks:
+  custom_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 100.64.0.0/16
