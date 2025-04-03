@@ -1,5 +1,10 @@
 .env
 LINE Messaging API - Multi-threaded Sender (Node.js + Docker).mindnode
+contents.xml
+QuickLook
+resources
+style.mindnodestyle
+viewState.plist
 .DS_Store
 node_modules
 npm-debug.log
